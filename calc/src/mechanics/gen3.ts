@@ -62,14 +62,46 @@ export function calculateADV(
     desc.moveBP = move.bp;
   }
 
+  const typeEffectivenessPrecedenceRules = [
+    'Normal',
+    'Fire',
+    'Water',
+    'Electric',
+    'Grass',
+    'Ice',
+    'Fighting',
+    'Poison',
+    'Ground',
+    'Flying',
+    'Psychic',
+    'Bug',
+    'Rock',
+    'Ghost',
+    'Dragon',
+    'Dark',
+    'Steel',
+  ];
+
+  let firstDefenderType = defender.types[0];
+  let secondDefenderType = defender.types[1];
+
+  if (secondDefenderType && firstDefenderType !== secondDefenderType) {
+    const firstTypePrecedence = typeEffectivenessPrecedenceRules.indexOf(firstDefenderType);
+    const secondTypePrecedence = typeEffectivenessPrecedenceRules.indexOf(secondDefenderType);
+
+    if (firstTypePrecedence > secondTypePrecedence) {
+      [firstDefenderType, secondDefenderType] = [secondDefenderType, firstDefenderType];
+    }
+  }
+
   const type1Effectiveness = getMoveEffectiveness(
     gen,
     move,
-    defender.types[0],
+    firstDefenderType,
     field.defenderSide.isForesight
   );
-  const type2Effectiveness = defender.types[1]
-    ? getMoveEffectiveness(gen, move, defender.types[1], field.defenderSide.isForesight)
+  const type2Effectiveness = secondDefenderType
+    ? getMoveEffectiveness(gen, move, secondDefenderType, field.defenderSide.isForesight)
     : 1;
   const typeEffectiveness = type1Effectiveness * type2Effectiveness;
 
@@ -123,6 +155,11 @@ export function calculateADV(
       bp = move.bp * 2;
       desc.moveBP = bp;
     }
+    break;
+  case 'Nature Power':
+    move.category = 'Physical';
+    bp = 60;
+    desc.moveName = 'Swift';
     break;
   default:
     bp = move.bp;
@@ -290,6 +327,20 @@ export function calculateADV(
   result.damage = [];
   for (let i = 85; i <= 100; i++) {
     result.damage[i - 85] = Math.max(1, Math.floor((baseDamage * i) / 100));
+  }
+
+  if (move.hits > 1) {
+    for (let times = 0; times < move.hits; times++) {
+      let damageMultiplier = 85;
+      result.damage = result.damage.map(affectedAmount => {
+        if (times) {
+          const newFinalDamage = Math.max(1, Math.floor((baseDamage * damageMultiplier) / 100));
+          damageMultiplier++;
+          return affectedAmount + newFinalDamage;
+        }
+        return affectedAmount;
+      });
+    }
   }
 
   return result;
