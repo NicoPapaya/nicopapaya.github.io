@@ -7,10 +7,6 @@ export namespace State {
     ability?: I.AbilityName;
     abilityOn?: boolean;
     isDynamaxed?: boolean;
-    dynamaxLevel?: number;
-    isSaltCure?: boolean;
-    alliesFainted?: number;
-    boostedStat?: I.StatIDExceptHP | 'auto';
     item?: I.ItemName;
     gender?: I.GenderName;
     nature?: I.NatureName;
@@ -19,7 +15,6 @@ export namespace State {
     boosts?: Partial<I.StatsTable>;
     originalCurHP?: number;
     status?: I.StatusName | '';
-    teraType?: I.TypeName;
     toxicCounter?: number;
     moves?: I.MoveName[];
     overrides?: Partial<I.Specie>;
@@ -46,10 +41,6 @@ export namespace State {
     isAuraBreak?: boolean;
     isFairyAura?: boolean;
     isDarkAura?: boolean;
-    isBeadsOfRuin?: boolean;
-    isSwordOfRuin?: boolean;
-    isTabletsOfRuin?: boolean;
-    isVesselOfRuin?: boolean;
     attackerSide: Side;
     defenderSide: Side;
   }
@@ -69,7 +60,6 @@ export namespace State {
     isForesight?: boolean;
     isTailwind?: boolean;
     isHelpingHand?: boolean;
-    isFlowerGift?: boolean;
     isFriendGuard?: boolean;
     isAuroraVeil?: boolean;
     isBattery?: boolean;

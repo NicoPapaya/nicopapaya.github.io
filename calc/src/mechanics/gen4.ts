@@ -97,56 +97,22 @@ export function calculateDPP(
     desc.moveType = move.type;
   }
 
-  if (attacker.hasAbility('Normalize') && !move.named('Struggle')) {
+  if (attacker.hasAbility('Normalize')) {
     move.type = 'Normal';
     desc.attackerAbility = attacker.ability;
   }
 
   const isGhostRevealed = attacker.hasAbility('Scrappy') || field.defenderSide.isForesight;
-
-  const typeEffectivenessPrecedenceRules = [
-    'Normal',
-    'Fire',
-    'Water',
-    'Electric',
-    'Grass',
-    'Ice',
-    'Fighting',
-    'Poison',
-    'Ground',
-    'Flying',
-    'Psychic',
-    'Bug',
-    'Rock',
-    'Ghost',
-    'Dragon',
-    'Dark',
-    'Steel',
-  ];
-
-  let firstDefenderType = defender.types[0];
-  let secondDefenderType = defender.types[1];
-
-  if (secondDefenderType && firstDefenderType !== secondDefenderType) {
-    const firstTypePrecedence = typeEffectivenessPrecedenceRules.indexOf(firstDefenderType);
-    const secondTypePrecedence = typeEffectivenessPrecedenceRules.indexOf(secondDefenderType);
-
-    if (firstTypePrecedence > secondTypePrecedence) {
-      [firstDefenderType, secondDefenderType] = [secondDefenderType, firstDefenderType];
-    }
-  }
-
   let type1Effectiveness =
-    getMoveEffectiveness(gen, move, firstDefenderType, isGhostRevealed, field.isGravity);
-  let type2Effectiveness = secondDefenderType
-    ? getMoveEffectiveness(gen, move, secondDefenderType, isGhostRevealed, field.isGravity)
+    getMoveEffectiveness(gen, move, defender.types[0], isGhostRevealed, field.isGravity);
+  let type2Effectiveness = defender.types[1]
+    ? getMoveEffectiveness(gen, move, defender.types[1], isGhostRevealed, field.isGravity)
     : 1;
 
   let typeEffectiveness = type1Effectiveness * type2Effectiveness;
 
-  // Klutz doesn't let Iron Ball ground in generation 4
-  if (typeEffectiveness === 0 && move.hasType('Ground') &&
-    (defender.hasItem('Iron Ball') && !defender.hasAbility('Klutz'))) {
+  // Iron Ball ignores Klutz in generation 4
+  if (typeEffectiveness === 0 && move.hasType('Ground') && defender.hasItem('Iron Ball')) {
     if (type1Effectiveness === 0) {
       type1Effectiveness = 1;
     } else if (defender.types[1] && type2Effectiveness === 0) {
@@ -243,12 +209,6 @@ export function calculateDPP(
       desc.moveBP = basePower;
     }
     break;
-  case 'Nature Power':
-    move.category = 'Special';
-    move.secondaries = true;
-    basePower = 80;
-    desc.moveName = 'Tri Attack';
-    break;
   case 'Crush Grip':
   case 'Wring Out':
     basePower = Math.floor((defender.curHP() * 120) / defender.maxHP()) + 1;
@@ -342,10 +302,6 @@ export function calculateDPP(
     attack = Math.floor(attack * 1.5);
     desc.attackerAbility = attacker.ability;
     desc.weather = field.weather;
-  } else if (field.attackerSide.isFlowerGift && field.hasWeather('Sun') && isPhysical) {
-    attack = Math.floor(attack * 1.5);
-    desc.weather = field.weather;
-    desc.isFlowerGiftAttacker = true;
   } else if (
     (isPhysical &&
       (attacker.hasAbility('Hustle') || (attacker.hasAbility('Guts') && attacker.status)) ||
@@ -400,10 +356,6 @@ export function calculateDPP(
     defense = Math.floor(defense * 1.5);
     desc.defenderAbility = defender.ability;
     desc.weather = field.weather;
-  } else if (field.defenderSide.isFlowerGift && field.hasWeather('Sun') && !isPhysical) {
-    defense = Math.floor(defense * 1.5);
-    desc.weather = field.weather;
-    desc.isFlowerGiftDefender = true;
   }
 
   if (defender.hasItem('Soul Dew') && defender.named('Latios', 'Latias') && !isPhysical) {
@@ -550,28 +502,6 @@ export function calculateDPP(
     damage[i] = Math.max(1, damage[i]);
   }
   result.damage = damage;
-
-  if (move.hits > 1) {
-    for (let times = 0; times < move.hits; times++) {
-      let damageMultiplier = 0;
-      result.damage = result.damage.map(affectedAmount => {
-        if (times) {
-          let newFinalDamage = 0;
-          newFinalDamage = Math.floor((baseDamage * (85 + damageMultiplier)) / 100);
-          newFinalDamage = Math.floor(newFinalDamage * stabMod);
-          newFinalDamage = Math.floor(newFinalDamage * type1Effectiveness);
-          newFinalDamage = Math.floor(newFinalDamage * type2Effectiveness);
-          newFinalDamage = Math.floor(newFinalDamage * filterMod);
-          newFinalDamage = Math.floor(newFinalDamage * ebeltMod);
-          newFinalDamage = Math.floor(newFinalDamage * tintedMod);
-          newFinalDamage = Math.max(1, newFinalDamage);
-          damageMultiplier++;
-          return affectedAmount + newFinalDamage;
-        }
-        return affectedAmount;
-      });
-    }
-  }
 
   // #endregion
 

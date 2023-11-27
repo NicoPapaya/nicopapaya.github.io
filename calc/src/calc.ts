@@ -8,7 +8,7 @@ import {calculateRBYGSC} from './mechanics/gen12';
 import {calculateADV} from './mechanics/gen3';
 import {calculateDPP} from './mechanics/gen4';
 import {calculateBWXY} from './mechanics/gen56';
-import {calculateSMSSSV} from './mechanics/gen789';
+import {calculateSMSS} from './mechanics/gen78';
 
 const MECHANICS = [
   () => {},
@@ -18,9 +18,8 @@ const MECHANICS = [
   calculateDPP,
   calculateBWXY,
   calculateBWXY,
-  calculateSMSSSV,
-  calculateSMSSSV,
-  calculateSMSSSV,
+  calculateSMSS,
+  calculateSMSS,
 ];
 
 export function calculate(

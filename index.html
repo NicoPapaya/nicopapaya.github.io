@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Papaya Black 2 Calc</title>
+    <title>Pokemon Renegade Platinum Damage Calculator</title>
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?2f51c96c" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?75385559" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26211653-3"></script>
@@ -21,17 +21,27 @@
             return false;
         };
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link href="../stylesheets/main.css" rel="stylesheet">
 </head>
 
 <body>
 
-
-<div class="wrapper" style="margin-top: 50px;">
+<nav><div class="header"><div class="header-inner">
+    <ul class="nav">
+        <li><a class="button nav-first" href="//pokemonshowdown.com"><img src="./img/RenPlat-Logo.png" alt="Pok&eacute;mon Showdown! (beta)" /> Home</a></li>
+        <li><a class="button" href="//dex.pokemonshowdown.com">Pok&eacute;dex</a></li>
+        <li><a class="button" href="//replay.pokemonshowdown.com/">Replays</a></li>
+        <li><a class="button" href="//pokemonshowdown.com/ladder/">Ladder</a></li>
+        <li><a class="button nav-last" href="//pokemonshowdown.com/forums/">Forum</a></li>
+    </ul>
+    <ul class="nav nav-play">
+        <li><a class="button greenbutton nav-first nav-last" href="//play.pokemonshowdown.com/">Play</a></li>
+    </ul>
+    <div style="clear:both"></div>
+</div></div></nav>
+<div class="wrapper">
 
     <div aria-label="Settings" role="region">
-        <span class="title-text">Papaya Black 2 Calc</span>
+        <span class="title-text">Pokemon Renegade Platinum Damage Calculator</span>
         <span class="genSelection" aria-labelledby="selectGenInstruction" role="radiogroup" title="Select the generation.">
             <span class="visually-hidden" id="selectGenInstruction">Select the generation.</span>
             <input class="gen visually-hidden" type="radio" name="gen" value="1" id="gen1" /><label class="btn btn-small btn-left" for="gen1">RBY</label>
@@ -101,12 +111,12 @@
         <div class="small-text"><span id="damageValues">(If you see this message for more than a few seconds, try enabling JavaScript.)</span>
         </div>
     </div>
-    <div class="panel-wrapper">
+
     <div aria-label="Pok&eacute;mon 1" class="panel" role="region">
         <fieldset class="poke-info" id="p1">
             <legend align="center">Pok&eacute;mon 1</legend>
             <input type="text" class="set-selector calc-trigger" />
-            <span id="importedSetsOptions" style="width:auto;">
+            <span id="importedSetsOptions" style="width:auto; display:none">
                 <input type="checkbox" id="importedSets" /> Only show imported sets <br />
                 <button id="clearSets">Clear Imported Sets</button>
             </span>
@@ -115,6 +125,7 @@
                     <label>Type</label>
                     <select aria-label="type1" class="type1 terrain-trigger calc-trigger"></select>
                     <select aria-label="type2" class="type2 terrain-trigger calc-trigger"></select>
+                    <small class="right">(<a class="analysis" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
                 </div>
                 <div class="hide">
                     <label>Forme</label>
@@ -604,7 +615,7 @@
         </fieldset>
     </div>
 
-    <div class="panel panel-mid">
+    <div class="panel">
         <div aria-label="Field information" role="region">
             <fieldset class="field-info">
                 <legend align="center">Field</legend>
@@ -625,7 +636,7 @@
                 <hr class="gen-specific g6 g7 g8" />
                 <div aria-labelledby="selectWeatherInstruction" role="radiogroup">
                     <span class="visually-hidden" id="selectWeatherInstruction">Select the current weather condition.</span>
-                    <div class="gen-specific g3 g4 g5 g6 g7 g8" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
+                    <div  class="gen-specific g3 g4 g5 g6 g7 g8" style="width: 22.2em; margin: 5px auto;" title="Select the current weather condition.">
                         <input class="visually-hidden calc-trigger" type="radio" name="weather" value="" id="clear" checked="checked" />
                         <label class="btn btn-small btn-left" for="clear">None</label>
                         <input class="visually-hidden calc-trigger" type="radio" name="weather" value="Sun" id="sun" />
@@ -656,14 +667,6 @@
                     <label class="btn btn-small btn-mid" for="gscRain">Rain</label>
                     <input class="visually-hidden calc-trigger" type="radio" name="gscWeather" value="Sand" id="gscSand" />
                     <label class="btn btn-small btn-right" for="gscSand">Sand</label>
-                </div>
-                <div class="gen-specific g5 g6 g7 g8" style="width: 22.2em; margin: 5px auto; display: inline-block;">
-                    <span hidden id="magicRoomInstruction">Is Magic Room in effect?</span>
-                    <span hidden id="wonderRoomInstruction">Is Wonder Room in effect?</span>
-                    <input aria-describedby="magicRoomInstruction" class="visually-hidden calc-trigger" type="checkbox" id="magicroom" />
-                    <label class="btn btn-xxxwide btn-left" for="magicroom">Magic Room</label>
-                    <input aria-describedby="wonderRoomInstruction" class="visually-hidden calc-trigger" type="checkbox" id="wonderroom" />
-                    <label class="btn btn-xxxwide btn-right" for="wonderroom">Wonder Room</label>
                 </div>
                 <div class="gen-specific g4 g5 g6 g7 g8" style="width: 5.3em; margin: 5px auto;" title="Is gravity in effect?">
                     <span hidden id="gravityInstruction">Is gravity in effect?</span>
@@ -834,17 +837,6 @@
                                 <label class="btn btn-xxwide" for="tailwindR">Tailwind</label>
                             </div></td>
                         </tr>
-                        <tr class="gen-specific g4 g5 g6 g7 g8">
-                            <td><div class="left" title="Is the Pok&eacute;mon affected by an ally's Flower Gift?">
-                                <div hidden id="selectFlowerGiftInstruction">Is the Pok&eacute;mon affected by an ally's Flower Gift?</div>
-                                <input aria-describedby="selectFlowerGiftInstruction" class="visually-hidden calc-trigger" type="checkbox" id="flowerGiftL" />
-                                <label class="btn btn-xxwide" for="flowerGiftL">Flower Gift</label>
-                            </div></td>
-                            <td><div class="right" title="Is the Pok&eacute;mon affected by an ally's Flower Gift?">
-                                <input aria-describedby="selectFlowerGiftInstruction" class="visually-hidden calc-trigger" type="checkbox" id="flowerGiftR" />
-                                <label class="btn btn-xxwide" for="flowerGiftR">Flower Gift</label>
-                            </div></td>
-                        </tr>
                         <tr class="gen-specific g5 g6 g7 g8">
                             <td><div class="left" title="Is the Pok&eacute;mon protected by an ally's Friend Guard?">
                                 <div hidden id="selectFriendGuardInstruction">Is the Pok&eacute;mon protected by an ally's Friend Guard?</div>
@@ -889,17 +881,6 @@
                                 <label class="btn btn-xxwide" for="batteryR">Battery</label>
                             </div></td>
                         </tr>
-                        <tr class="gen-specific g8">
-                          <td><div class="left" title="Is the Pok&eacute;mon boosted by an ally's Power Spot ability?">
-                              <div hidden id="selectPowerSpotInstruction">Is the Pok&eacute;mon boosted by an ally's Power Spot ability?</div>
-                                <input aria-describedby="selectPowerSpotInstruction" class="visually-hidden calc-trigger" type="checkbox" id="powerSpotL" />
-                                <label class="btn btn-xxwide" for="powerSpotL">Power Spot</label>
-                              </div></td>
-                            <td><div class="right" title="Is the Pok&eacute;mon boosted by an ally's Power Spot ability?">
-                                <input aria-describedby="selectPowerSpotInstruction" class="visually-hidden calc-trigger" type="checkbox" id="powerSpotR" />
-                                <label class="btn btn-xxwide" for="powerSpotR">Power Spot</label>
-                            </div></td>
-                        </tr>
                         <tr class="gen-specific g2 g3 g4 g5 g6 g7 g8">
                             <td><div class="left" title="Is the defending Pok&eacute;mon switching out?">
                               <div hidden id="selectSwitchingInstruction">Is the defending Pok&eacute;mon switching out?</div>
@@ -940,7 +921,7 @@
         <fieldset class="poke-info" id="p2">
             <legend align="center">Pok&eacute;mon 2</legend>
             <input type="text" class="set-selector calc-trigger" />
-            <span id="importedSetsOptions" style="width:auto;">
+            <span id="importedSetsOptions" style="width:auto; display:none">
                 <input type="checkbox" id="importedSets" /> Only show imported sets <br />
                 <button id="clearSets">Clear Imported Sets</button>
             </span>
@@ -949,6 +930,7 @@
                     <label>Type</label>
                     <select aria-label="Type 1" class="type1 terrain-trigger calc-trigger"></select>
                     <select aria-label="Type 2" class="type2 terrain-trigger calc-trigger"></select>
+                    <small class="right">(<a class="analysis" target="_blank" href="">Smogon&nbsp;analysis</a>)</small>
                 </div>
                 <div class="hide">
                     <label>Forme</label>
@@ -1435,7 +1417,6 @@
             </div>
         </fieldset>
     </div>
-    </div>
     <script type="text/javascript">
         var linkExtension = '.html';
     </script>
@@ -1449,109 +1430,89 @@
         var calc = exports = {};
         function require() { return exports };
     </script>
-    <script type="text/javascript" src="./calc/util.js?8fa0c7ff"></script>
-    <script type="text/javascript" src="./calc/stats.js?da4066f9"></script>
-    <script type="text/javascript" src="./calc/data/species.js?66abc34d"></script>
-    <script type="text/javascript" src="./js/data/sets/gen8.js?6f60aa5c"></script>
-    <script type="text/javascript" src="./js/data/sets/gen7.js?b8c1b790"></script>
-    <script type="text/javascript" src="./js/data/sets/gen6.js?2219279f"></script>
-    <script type="text/javascript" src="./js/data/sets/gen5.js?0e47243c"></script>
-
-
-    <script type="text/javascript" src="./moves.js"></script>
-    <script type="text/javascript" src="./poks.js"></script>
-
-    <script>
-    $(document).ready(function() {
-       
-
-        // import moves
-        $(document).ready(function() {
-            var jsonMoves = pwMoves
-            var jsonMove 
-          
-            for (move in moves) {
-
-                if (jsonMoves[move]) {
-                    jsonMove = jsonMoves[move]
-                } else {
-                    continue //skip unsupported moves like hidden power
-                }
-
-                moves[move]["bp"] = jsonMove["basePower"]
-                moves[move]["type"] = jsonMove["type"]
-                moves[move]["category"] = jsonMove["category"]
-
-                if (moves[move]["multihit"]) {
-                    moves[move]["multihit"] = jsonMove["multihit"]
-                }
-            }  
-        })
-                       
-          // import poks
-
-        $(document).ready(function() {
-            var jsonPoks = pwPoks
-            var jsonPok 
-          
-            for (pok in pokedex) {
-
-                if (jsonPoks[pok]) {
-                    jsonPok = jsonPoks[pok]
-                } else {
-                    continue //skip weird smogon pokemon and arceus forms
-                }
-                pokedex[pok]["bs"] = jsonPok["bs"]
-                pokedex[pok]["types"] = jsonPok["types"]
-            }         
-        })
-    })
-
-</script>
-
-    <script type="text/javascript" src="./js/data/sets/gen4.js?57f6a821"></script>
-    <script type="text/javascript" src="./js/data/sets/gen3.js?13854f5f"></script>
-    <script type="text/javascript" src="./js/data/sets/gen2.js?4cb8be40"></script>
-    <script type="text/javascript" src="./js/data/sets/gen1.js?a2f6e086"></script>
-    <script type="text/javascript" src="./calc/data/types.js?b935c17a"></script>
-    <script type="text/javascript" src="./calc/data/natures.js?407b5243"></script>
-    <script type="text/javascript" src="./calc/data/abilities.js?c1788574"></script>
-    <script type="text/javascript" src="./calc/data/moves.js?dcd8d21c"></script>
-    <script type="text/javascript" src="./calc/data/items.js?4724e4b1"></script>
-    <script type="text/javascript" src="./calc/data/index.js?083d2bc9"></script>
-    <script type="text/javascript" src="./calc/move.js?de87e36d"></script>
-    <script type="text/javascript" src="./calc/pokemon.js?59377ee3"></script>
-    <script type="text/javascript" src="./calc/field.js?51ae3fd9"></script>
-    <script type="text/javascript" src="./calc/items.js?6c1bfef0"></script>
-    <script type="text/javascript" src="./calc/mechanics/util.js?13c1ef42"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen78.js?b5cb13b6"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen56.js?326e578d"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen4.js?7d2b7674"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen3.js?2fa3d6a1"></script>
-    <script type="text/javascript" src="./calc/mechanics/gen12.js?468bc07b"></script>
-    <script type="text/javascript" src="./calc/calc.js?d7fc4fbd"></script>
-    <script type="text/javascript" src="./calc/desc.js?0d17c5d2"></script>
-    <script type="text/javascript" src="./calc/result.js?d5c7552b"></script>
-    <script type="text/javascript" src="./calc/adaptable.js?afeb3759"></script>
-    <script type="text/javascript" src="./calc/index.js?2377cbc8"></script>
-    <script type="text/javascript" src="./js/shared_controls.js?0b3ea005"></script>
-    <script type="text/javascript" src="./js/index_randoms_controls.js?3375d6f1"></script>
-    <script type="text/javascript" src="./js/moveset_import.js?a7071f5b"></script>
-    <script type="text/javascript" src="./moves.js"></script>
+    <script type="text/javascript" src="./calc/util.js?51463f0d"></script>
+    <script type="text/javascript" src="./calc/stats.js?69c0f417"></script>
+    <script type="text/javascript" src="./calc/data/species.js?f533168a"></script>
+    <script type="text/javascript" src="./js/data/sets/gen8.js?a09a61f6"></script>
+    <script type="text/javascript" src="./js/data/sets/gen7.js?6235522f"></script>
+    <script type="text/javascript" src="./js/data/sets/gen6.js?8f8d1562"></script>
+    <script type="text/javascript" src="./js/data/sets/gen5.js?2cbfa123"></script>
+    <script type="text/javascript" src="./js/data/sets/gen4.js?e5f17ce2"></script>
+    <script type="text/javascript" src="./js/data/sets/gen3.js?95d903cd"></script>
+    <script type="text/javascript" src="./js/data/sets/gen2.js?f251f1f4"></script>
+    <script type="text/javascript" src="./js/data/sets/gen1.js?9c745663"></script>
+    <script type="text/javascript" src="./calc/data/types.js?2edf901c"></script>
+    <script type="text/javascript" src="./calc/data/natures.js?45e39033"></script>
+    <script type="text/javascript" src="./calc/data/abilities.js?250bd49d"></script>
+    <script type="text/javascript" src="./calc/data/moves.js?7f57b20d"></script>
+    <script type="text/javascript" src="./calc/data/items.js?a690f0c2"></script>
+    <script type="text/javascript" src="./calc/data/index.js?abecbd82"></script>
+    <script type="text/javascript" src="./calc/move.js?e281b626"></script>
+    <script type="text/javascript" src="./calc/pokemon.js?341f6d70"></script>
+    <script type="text/javascript" src="./calc/field.js?d4e2a5cf"></script>
+    <script type="text/javascript" src="./calc/items.js?5cb2471d"></script>
+    <script type="text/javascript" src="./calc/mechanics/util.js?56a0e8fd"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen78.js?ef6003a2"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen56.js?8062facf"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen4.js?794cb47f"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen3.js?b9c820a5"></script>
+    <script type="text/javascript" src="./calc/mechanics/gen12.js?f7b27dd8"></script>
+    <script type="text/javascript" src="./calc/calc.js?b9296a16"></script>
+    <script type="text/javascript" src="./calc/desc.js?c56ee5a6"></script>
+    <script type="text/javascript" src="./calc/result.js?86902d31"></script>
+    <script type="text/javascript" src="./calc/adaptable.js?ba4a303f"></script>
+    <script type="text/javascript" src="./calc/index.js?f172426f"></script>
+    <script type="text/javascript" src="./js/shared_controls.js?22bb6344"></script>
+    <script type="text/javascript" src="./js/index_randoms_controls.js?c05b55a3"></script>
+    <script type="text/javascript" src="./js/moveset_import.js?1eda9a4d"></script>
 </div>
 
-<div class="credits">Created by Honko, maintained by Austin and Kris, modified for Pokeweb
+<head>
+    <title>Small Dropdown Menu</title>
+    <style>
+        /* Basic styling for the dropdown container and the hidden text */
+        .dropdown {
+            position: absolute;
+            top: 80px; /* Adjust the top position as needed */
+            right: 199px; /* Adjust the right position as needed */
+            display: inline-block;
+            cursor: pointer;
+            font-weight: bold; /* Set the text inside the dropdown content to be bold */
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 200px;
+            padding: 15px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+         }
+        .dropdown-content p {
+            font-weight: normal; 
+            margin: 0; 
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        Planning for Volkner?
+        <div class="dropdown-content">
+            <p>Don't forget to change the typing of Rotom-Wash and Rotom-Heat when calcing. They had to be put under regular Rotom stats as there is a bug in Pokemon Platinum where all Rotom-Forms have the stats of base Rotom.</p> 
+        </div>
+    </div>
+</body>
+
+
+<div class="credits">Created by Honko, maintained by Austin and Kris
     <ul><li><a href="https://github.com/smogon/damage-calc/contributors" target="_blank">Contributors</a></li>
     <li><a href="https://www.smogon.com/forums/threads/pok%C3%A9mon-showdown-damage-calculator.3593546/" target="_blank">Bug Reports</a></li>
     <li><a href="https://github.com/smogon/damage-calc" target="_blank">GitHub repository</a></li></ul>
 </div>
 
-
-
-
 </body>
 
-
 </html>
-
-
